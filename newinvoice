@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+/Users/lynn/.scripts/ascii-table
+
+read "recipient_name?Enter Recipient Name: "
+read "recipient_email?Enter Recipient Email: "
+read "invoice_number?Enter Invoice Number: "
+
+today=$(date +"%Y%m%d")
+filename="${today}-${invoice_number}-invoice.txt"
+
+#------- Template Design -------
+cat <<EOF > $filename
+        ████████ ██    ██ ██████  ███    ███ ███████ ██████  ██  ██████ 
+           ██    ██    ██ ██   ██ ████  ████ ██      ██   ██ ██ ██      
+           ██    ██    ██ ██████  ██ ████ ██ █████   ██████  ██ ██      
+           ██    ██    ██ ██   ██ ██  ██  ██ ██      ██   ██ ██ ██      
+           ██     ██████  ██   ██ ██      ██ ███████ ██   ██ ██  ██████ 
+                                                                
+                                                             
+-------------------------------------------------------------------------------
+                                INVOICE: ${today}-${invoice_number}
+-------------------------------------------------------------------------------
+
+From: Lynn Pérez                                     Date: $(date +"%b %d, %Y")
+Email: perez.businessinfo@gmail.com
+
+To: $recipient_name
+Email: $recipient_email
+
+
+#{PASTE ASCII HERE}
+
+
+
+                   ╔════════════════════════════════════════╗
+                   ║ A pleasure doing business with you!    ║
+                   ║                Thank you.              ║
+                   ╚════════════════════════════════════════╝
+  
+  
+                                  ________
+                                 /_______/|
+                                |  ____  ||  (
+                                | |    |*||   )
+                                | |____|–||__|[|_,__
+                               /[________]|  |[|( )/|
+                              /___________________/ |
+                              |  _________  _____ | |
+                              | /         ||_____|| |
+                              | |         ||_____|| |
+                              | |         ||_____|| |
+                              |_|         |_______|/
+
+EOF
+
+echo "Invoice generated as $filename"
+

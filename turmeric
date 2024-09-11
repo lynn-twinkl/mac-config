@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+date=$(date +"%b %d, %Y")
+ORANGE='\033[38;5;202m'
+PINK='\033[38;5;162m'
+BLUE='\033[38;5;105m'
+NC='\033[0m'
+
+random_number=$(( ( RANDOM % 3 ) + 1 ))
+
+if [ $random_number -eq 1 ]; then
+    COLOR=$PINK
+elif [ $random_number -eq 2 ]; then
+    COLOR=$ORANGE
+else
+    COLOR=$BLUE
+fi
+
+cd "/Users/lynn/Library/Mobile Documents/com~apple~CloudDocs/Work Files/Turmeric"
+
+echo -e "${COLOR}"
+echo -e "      ████████ ██    ██ ██████  ███    ███ ███████ ██████  ██  ██████" 
+echo -e "         ██    ██    ██ ██   ██ ████  ████ ██      ██   ██ ██ ██      "
+echo -e "         ██    ██    ██ ██████  ██ ████ ██ █████   ██████  ██ ██     " 
+echo -e "         ██    ██    ██ ██   ██ ██  ██  ██ ██      ██   ██ ██ ██      "
+echo -e "         ██     ██████  ██   ██ ██      ██ ███████ ██   ██ ██  ██████ "
+echo -e ""
+echo -e "----------------------------------------------------------------------------"
+echo -e "                        HOME DIRECTORY – ${date}                            "
+echo -e "----------------------------------------------------------------------------"
+echo -e "${NC}"
+
+ls --color=never
+
+echo ""

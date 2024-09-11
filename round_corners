@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+round_corners() {
+    local img="$1"
+    local radius="$2"
+    local output="$3"
+
+    # The line below extracts the dimensions form the image for later use, PRIOR to running the main function in order to prevent any potential issues.
+
+    local dimensions=$(magick identify -format "%wx%h" "$img")
+    
+    # Main Function
+
+    magick "$img" \
+        \( -size "$dimensions" xc:none -fill white \
+        -draw "roundrectangle 0,0 %[fx:w],%[fx:h] $radius,$radius" \) \
+        -alpha set -compose DstIn -composite "$output"
+}
+
+# Adding "$@" is good practice when dealing with multple arguments that need to be passed directly into a function directly as provided.
+
+round_corners "$@"
+
