@@ -8,6 +8,7 @@ This is a list of general packages I like to run on my terminal as well as their
 2. **Glow** - Markdown Viewer 
 3. **ImageMagick** - Image Editor
 4. **LibreOffice** - Document Editor
+5. **Coreutils** - Core utilities including SHUF for selecting random csv rows. 
 
 ---
 
