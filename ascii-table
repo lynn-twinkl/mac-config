@@ -40,8 +40,7 @@ def main():
     table = tabulate(rows, headers=headers, tablefmt="grid")
     print(table)
 
-    # Add and display the TOTAL row as a footer
-    footer = tabulate([['TOTAL', f"${total_amount:.2f}"]], tablefmt="grid")
+    footer = tabulate([['TOTAL', f"${total_amount:.2f}"]], tablefmt="plain")
     print("\n" + footer)
 
 if __name__ == "__main__":

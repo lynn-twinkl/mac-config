@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-/Users/lynn/.scripts/ascii-table
+/Users/lynn/.mac-config/ascii-table
 
 read "recipient_name?Enter Recipient Name: "
 read "recipient_email?Enter Recipient Email: "
