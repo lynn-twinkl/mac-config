@@ -9,25 +9,25 @@ def collect_rows(num_rows):
     rows = []
     total_amount = 0 
     for i in range(num_rows):
-        print(f"\nLINE-ITEM {i + 1}:")
-        item = input("Item: ")
-        descr = input("Description: ")
-        try:
-            amount = float(input("Amount (USD): "))
-        except ValueError:
-            print("Invalid amount. Please enter a valid number.")
-            return rows, total_amount
-        
-        # Create the row and check its length
-        row = [item, descr, f"${amount:.2f}"]
-        row_string = ' '.join(str(cell) for cell in row)
-        if len(row_string) > 79:
-            print("Warning: This row contains more than 79 characters!")
-
-        rows.append(row)
-        
-        # Update the total amount
-        total_amount += amount
+        while True:
+            print(f"\nLINE-ITEM {i + 1}:")
+            item = input("Item: ")
+            descr = input("Description: ")
+            try:
+                amount = float(input("Amount (USD): "))
+            except ValueError:
+                print("Invalid amount. Please enter a valid number.")
+                continue
+            
+            # Create the row and check its length
+            row = [item, descr, f"${amount:.2f}"]
+            row_string = ' '.join(str(cell) for cell in row)
+            if len(row_string) > 79:
+                print("Warning: This row contains more than 79 characters! Please enter the information again.")
+            else:
+                rows.append(row)
+                total_amount += amount
+                break  # Exit the loop if the row is valid
 
     return rows, total_amount
 
