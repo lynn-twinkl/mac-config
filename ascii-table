@@ -18,7 +18,13 @@ def collect_rows(num_rows):
             print("Invalid amount. Please enter a valid number.")
             return rows, total_amount
         
-        rows.append([item, descr, f"${amount:.2f}"])
+        # Create the row and check its length
+        row = [item, descr, f"${amount:.2f}"]
+        row_string = ' '.join(str(cell) for cell in row)
+        if len(row_string) > 79:
+            print("Warning: This row contains more than 79 characters!")
+
+        rows.append(row)
         
         # Update the total amount
         total_amount += amount

@@ -18,11 +18,11 @@ cat <<EOF > $filename
            ██     ██████  ██   ██ ██      ██ ███████ ██   ██ ██  ██████ 
                                                                 
                                                              
-----------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
                                QUOTE: ${today}-${quote_number}
-----------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
-From: Lynn Pérez                                        Date: $(date +"%b %d, %Y")
+From: Lynn Pérez                                     Date: $(date +"%b %d, %Y")
 Email: perez.businessinfo@gmail.com
 
 To: $recipient_name
@@ -54,5 +54,5 @@ Email: $recipient_email
 
 EOF
 
-echo "Quotegenerated as $filename"
+echo "Quote generated as $filename"
 
