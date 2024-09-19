@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+/Users/lynn/.mac-config/ascii-table
+
+read "recipient_name?Enter Recipient Name: "
+read "recipient_email?Enter Recipient Email: "
+read "quote_number?Enter QuoteNumber: "
+
+today=$(date +"%Y%m%d")
+filename="${today}-${quote_number}-quote.txt"
+
+#------- Template Design -------
+cat <<EOF > $filename
+        ████████ ██    ██ ██████  ███    ███ ███████ ██████  ██  ██████ 
+           ██    ██    ██ ██   ██ ████  ████ ██      ██   ██ ██ ██      
+           ██    ██    ██ ██████  ██ ████ ██ █████   ██████  ██ ██      
+           ██    ██    ██ ██   ██ ██  ██  ██ ██      ██   ██ ██ ██      
+           ██     ██████  ██   ██ ██      ██ ███████ ██   ██ ██  ██████ 
+                                                                
+                                                             
+----------------------------------------------------------------------------------
+                               QUOTE: ${today}-${quote_number}
+----------------------------------------------------------------------------------
+
+From: Lynn Pérez                                        Date: $(date +"%b %d, %Y")
+Email: perez.businessinfo@gmail.com
+
+To: $recipient_name
+Email: $recipient_email
+
+
+#----------- {PASTE ASCII HERE} ---------------------------------------------
+
+
+
+                   ╔════════════════════════════════════════╗
+                   ║ A pleasure doing business with you!    ║
+                   ║                Thank you.              ║
+                   ╚════════════════════════════════════════╝
+  
+  
+                                  ________
+                                 /_______/|
+                                |  ____  ||  (
+                                | |    |*||   )
+                                | |____|–||__|[|_,__
+                               /[________]|  |[|( )/|
+                              /___________________/ |
+                              |  _________  _____ | |
+                              | /         ||_____|| |
+                              | |         ||_____|| |
+                              | |         ||_____|| |
+                              |_|         |_______|/
+
+EOF
+
+echo "Quotegenerated as $filename"
+
