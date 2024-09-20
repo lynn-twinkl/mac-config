@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+read input_file=$1
+read output_file="${input_file%.*}.pdf"
+
+libreoffice_path="$(which soffice)"
+
+"$libreoffice_path" --headless --convert-to pdf "$input_file" --script "vnd.sun.star.script:Standard.Module1.ApplyFormatting?language=Basic&location=application"
+if [[ -f "$output_file" ]]; then
+    echo "Successfully converted $input_file to $output_file"
+else
+    echo "Conversion failed"
+fi
