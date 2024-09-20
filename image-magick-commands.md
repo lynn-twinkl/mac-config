@@ -23,7 +23,9 @@ Please note, if you want a **blurred** rounded image, you should **blur first** 
 ## Crop Image Into Circle
 Note, this method doesn't automatically detect the smallest side of the image and use that to crop the image.
 
-`magick $img -alpha set -background none -vignette 0x0 rounded-$img.png` 
+- **For square images:** `magick $img -alpha set -background none -vignette 0x0 rounded-$img.png` 
+<br>
+- **For non-square images:** `magick $img -gravity center -crop 1:1 -alpha set -backgorund none -vignette 0x0 round-$img.png`
 <br>
 Here's how to extend the backgronud of the image, in case you want the crop to be a little wider. Note this only works for image with a solid color background:
 <br>
