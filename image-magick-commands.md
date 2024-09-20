@@ -19,3 +19,12 @@ Alternatively, to add an _even_ "frame" (background) use the code below. In this
 Please note, if you want a **blurred** rounded image, you should **blur first** and round second.
 
 `magick $img -gravity center -blur 0x[blur amount] output.png`
+
+## Crop Image Into Circle
+Note, this method doesn't automatically detect the smallest side of the image and use that to crop the image.
+
+`magick $img -alpha set -background none -vignette 0x0 rounded-$img.png` 
+<br>
+Here's how to extend the backgronud of the image, in case you want the crop to be a little wider. Note this only works for image with a solid color background:
+<br>
+`magick input.jpg -background orange -gravity center -extent 150%x150% output.png`
