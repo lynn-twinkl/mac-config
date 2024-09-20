@@ -1,13 +1,29 @@
 #!/bin/zsh
 
-read input_file=$1
-read output_file="${input_file%.*}.pdf"
+# Input and output files
+input_file="$1"
+output_file="${input_file%.*}.pdf"
 
+# Find the path to soffice
 libreoffice_path="$(which soffice)"
 
-"$libreoffice_path" --headless --convert-to pdf "$input_file" --script "vnd.sun.star.script:Standard.Module1.ApplyFormatting?language=Basic&location=application"
+# Check if soffice command exists
+if [[ -z "$libreoffice_path" ]]; then
+    echo "LibreOffice not found. Make sure it's installed and accessible."
+    exit 1
+fi
+
+# Debug output to check input file
+echo "Converting file: $input_file"
+echo "LibreOffice path: $libreoffice_path"
+
+# Run the LibreOffice conversion in headless mode
+"$libreoffice_path" --headless --convert-to pdf "$input_file"
+
+# Check if conversion was successful
 if [[ -f "$output_file" ]]; then
     echo "Successfully converted $input_file to $output_file"
 else
     echo "Conversion failed"
 fi
+
