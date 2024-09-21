@@ -1,29 +1,24 @@
 #!/bin/zsh
 
-# Input and output files
+# Input .txt file provided by the user
 input_file="$1"
-output_file="${input_file%.*}.pdf"
 
-# Find the path to soffice
+# Find the path to soffice (LibreOffice)
 libreoffice_path="$(which soffice)"
 
-# Check if soffice command exists
+# Check if soffice is found
 if [[ -z "$libreoffice_path" ]]; then
     echo "LibreOffice not found. Make sure it's installed and accessible."
     exit 1
 fi
 
-# Debug output to check input file
-echo "Converting file: $input_file"
-echo "LibreOffice path: $libreoffice_path"
+# Step 1: Open the .txt file, apply the macro to format it and save as PDF
+echo "Opening $input_file, applying formatting, and saving as PDF..."
+"$libreoffice_path" --norestore "$input_file" "macro:///Standard.Module1.ApplyFormattingAndSaveAsPDF"
 
-# Run the LibreOffice conversion in headless mode
-"$libreoffice_path" --headless --convert-to pdf "$input_file"
+# Step 2: Add a delay to give time for the macro to finish
+sleep 3  # Wait 5 seconds to ensure the macro has enough time to complete
 
-# Check if conversion was successful
-if [[ -f "$output_file" ]]; then
-    echo "Successfully converted $input_file to $output_file"
-else
-    echo "Conversion failed"
-fi
+# Step 3: Kill the LibreOffice process if it's still running
+pkill soffice
 
