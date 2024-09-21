@@ -1,24 +1,16 @@
 #!/bin/zsh
 
-# Input .txt file provided by the user
 input_file="$1"
 
-# Find the path to soffice (LibreOffice)
 libreoffice_path="$(which soffice)"
 
-# Check if soffice is found
-if [[ -z "$libreoffice_path" ]]; then
-    echo "LibreOffice not found. Make sure it's installed and accessible."
-    exit 1
-fi
-
-# Step 1: Open the .txt file, apply the macro to format it and save as PDF
 echo "Opening $input_file, applying formatting, and saving as PDF..."
-"$libreoffice_path" --norestore "$input_file" "macro:///Standard.Module1.ApplyFormattingAndSaveAsPDF"
+soffice --norestore "$input_file" "macro:///Standard.Module1.ApplyFormattingAndSaveAsPDF" &
 
-# Step 2: Add a delay to give time for the macro to finish
-sleep 3  # Wait 5 seconds to ensure the macro has enough time to complete
+sleep 3
 
-# Step 3: Kill the LibreOffice process if it's still running
 pkill soffice
+pkill soffice.bin
+
+echo "Done! Thanks for sotpping by."
 
