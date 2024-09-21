@@ -20,7 +20,7 @@ Sub ApplyFormattingAndSaveAsPDF
 
     ' Apply font style to the entire document
     oCursor.CharFontName = "SF Mono"
-    oCursor.CharHeight = 9
+    oCursor.CharHeight = 10
 
     ' Access the PageStyle family and apply margins (in hundredths of mm, 0.5 inch = 1270)
     oStyleFamilies = oDoc.getStyleFamilies()
