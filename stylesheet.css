@@ -64,7 +64,7 @@ blockquote {
 /* Lists */
 ul, ol {
   margin-bottom: 1.5rem;
-  padding-left: 2rem;
+  padding-left: 0;
 }
 
 li {
