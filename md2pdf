@@ -6,7 +6,6 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-# Get the input file and its name without extension
 INPUT_FILE=$1
 BASENAME=$(basename "$INPUT_FILE" .md)
 
@@ -29,15 +28,12 @@ fi
 
 # Convert the Markdown file to HTML using pandoc
 HTML_FILE="${BASENAME}.html"
-echo "Converting $INPUT_FILE to HTML..."
 pandoc "$INPUT_FILE" -o "$HTML_FILE" --self-contained --css="$CSS_FILE"
 
 # Convert the HTML file to PDF using LibreOffice
-echo "Converting $HTML_FILE to PDF..."
 soffice --headless --convert-to pdf "$HTML_FILE"
 
 # Delete the HTML file
-echo "Deleting $HTML_FILE..."
 rm "$HTML_FILE"
 
 echo "Conversion complete. Output PDF: ${BASENAME}.pdf"
