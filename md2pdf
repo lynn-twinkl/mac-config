@@ -21,14 +21,11 @@ if [[ "$INPUT_FILE" != *.md ]]; then
 fi
 
 # Download the GitHub Markdown CSS if it doesn't already exist
-CSS_FILE="github-markdown.css"
-if [ ! -f "$CSS_FILE" ]; then
-  curl -o "$CSS_FILE" https://raw.githubusercontent.com/sindresorhus/github-markdown-css/main/github-markdown.css
-fi
+CSS_FILE="$HOME/.mac-config/github-markdown.css"
 
 # Convert the Markdown file to HTML using pandoc
 HTML_FILE="${BASENAME}.html"
-pandoc "$INPUT_FILE" -o "$HTML_FILE" --self-contained --css="$CSS_FILE"
+pandoc "$INPUT_FILE" -o "$HTML_FILE" --embed-resources --standalone --css="$CSS_FILE"
 
 # Convert the HTML file to PDF using LibreOffice
 soffice --headless --convert-to pdf "$HTML_FILE"
