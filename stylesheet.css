@@ -5,7 +5,7 @@ body {
   line-height: 1.2;
   margin: 0;
   padding: 0;
-  color: #333;
+  color: #262626;
   background-color: #f9f9f9;
 }
 
@@ -26,8 +26,8 @@ p {
 
 /* Links */
 a {
-  color: #007acc;
-  text-decoration: none;
+  color: #5f00ff;
+  text-decoration: underline;
 }
 
 a:hover {
