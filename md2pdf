@@ -21,7 +21,7 @@ if [[ "$INPUT_FILE" != *.md ]]; then
 fi
 
 # Download the GitHub Markdown CSS if it doesn't already exist
-CSS_FILE="$HOME/.mac-config/github-markdown.css"
+CSS_FILE="$HOME/.mac-config/stylesheet.css"
 
 # Convert the Markdown file to HTML using pandoc
 HTML_FILE="${BASENAME}.html"
