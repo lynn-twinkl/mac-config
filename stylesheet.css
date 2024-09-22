@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   color: #262626;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 /* Headings */
@@ -26,7 +26,7 @@ p {
 
 /* Links */
 a {
-  color: #5f00ff;
+  color: #5f5fff;
   text-decoration: underline;
 }
 
