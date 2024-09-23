@@ -2,22 +2,38 @@
 
 round_corners() {
     local img="$1"
-    local radius="$2"
+    local radius_percent="$2"  # Radius as a percentage of min(width, height)
     local output="$3"
 
-    # The line below extracts the dimensions form the image for later use, PRIOR to running the main function in order to prevent any potential issues.
+    # Ensure all arguments are provided
+    if [[ -z "$img" || -z "$radius_percent" || -z "$output" ]]; then
+        echo "Usage: $0 input_image radius_percentage output_image"
+        return 1
+    fi
 
-    local dimensions=$(magick identify -format "%wx%h" "$img")
+    # Get image dimensions
+    local width height min_dim
+    width=$(magick identify -format "%w" "$img")
+    height=$(magick identify -format "%h" "$img")
     
-    # Main Function
+    if [[ -z "$width" || -z "$height" ]]; then
+        echo "Error: Unable to get image dimensions for '$img'."
+        return 1
+    fi
 
+    # Determine the smaller dimension
+    min_dim=$(( width < height ? width : height ))
+
+    # Calculate radius: (radius_percent / 100) * min_dim / 2
+    local radius
+    radius=$(awk "BEGIN { printf \"%.0f\", ($radius_percent / 100) * $min_dim / 2 }")
+
+    # Apply rounded corners
     magick "$img" \
-        \( -size "$dimensions" xc:none -fill white \
-        -draw "roundrectangle 0,0 %[fx:w],%[fx:h] $radius,$radius" \) \
+        \( -size "${width}x${height}" xc:none -fill white \
+        -draw "roundrectangle 0,0 $width,$height $radius,$radius" \) \
         -alpha set -compose DstIn -composite "$output"
 }
-
-# Adding "$@" is good practice when dealing with multple arguments that need to be passed directly into a function directly as provided.
 
 round_corners "$@"
 
