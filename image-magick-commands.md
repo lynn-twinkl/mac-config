@@ -30,3 +30,8 @@ Note, this method doesn't automatically detect the smallest side of the image an
 Here's how to extend the backgronud of the image, in case you want the crop to be a little wider. Note this only works for image with a solid color background:
 <br>
 `magick input.jpg -background orange -gravity center -extent 150%x150% output.png`
+
+## Crop Image To A Certain Ration (Without Resizing)
+For this example, we're using a ratio of 3:4 :
+<br>
+`magick input.jpg -gravity center -crop 3:4 +repage output.jpg`
