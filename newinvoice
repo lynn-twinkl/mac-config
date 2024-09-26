@@ -4,10 +4,9 @@
 
 read "recipient_name?Enter Recipient Name: "
 read "recipient_email?Enter Recipient Email: "
-read "invoice_number?Enter Invoice Number: "
 
-today=$(date +"%Y%m%d")
-filename="${today}-${invoice_number}-invoice.txt"
+today=$(date +"%Y-%m-%d")
+filename="${today}-invoice.txt"
 
 #------- Template Design -------
 cat <<EOF > $filename
