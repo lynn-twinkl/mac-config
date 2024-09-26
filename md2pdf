@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-# Check if the correct number of arguments is provided
+#---- ERROR HANDLING ----
+
 if [ "$#" -ne 1 ]; then
   echo "Usage: $0 input.md"
   exit 1
@@ -9,7 +10,6 @@ fi
 INPUT_FILE=$1
 BASENAME=$(basename "$INPUT_FILE" .md)
 
-# Check if the input file exists and is a markdown file
 if [ ! -f "$INPUT_FILE" ]; then
   echo "Error: File $INPUT_FILE does not exist."
   exit 1
@@ -20,17 +20,15 @@ if [[ "$INPUT_FILE" != *.md ]]; then
   exit 1
 fi
 
-# Download the GitHub Markdown CSS if it doesn't already exist
+#---- SCRIPT ----
+
 CSS_FILE="$HOME/.mac-config/stylesheet.css"
 
-# Convert the Markdown file to HTML using pandoc
 HTML_FILE="${BASENAME}.html"
 pandoc "$INPUT_FILE" -o "$HTML_FILE" --embed-resources --standalone --css="$CSS_FILE"
 
-# Convert the HTML file to PDF using LibreOffice
 soffice --headless --convert-to pdf "$HTML_FILE"
 
-# Delete the HTML file
 rm "$HTML_FILE"
 
 echo "Conversion complete. Output PDF: ${BASENAME}.pdf"
