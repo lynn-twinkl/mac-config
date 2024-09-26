@@ -31,7 +31,7 @@ Here's how to extend the backgronud of the image, in case you want the crop to b
 <br>
 `magick input.jpg -background orange -gravity center -extent 150%x150% output.png`
 
-## Crop Image To A Certain Ration (Without Resizing)
+## Crop Image To A Certain Ratio (Without Resizing)
 For this example, we're using a ratio of 3:4 :
 <br>
 `magick input.jpg -gravity center -crop 3:4 +repage output.jpg`
