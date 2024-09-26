@@ -2,8 +2,6 @@
 
 input_file="$1"
 
-libreoffice_path="$(which soffice)"
-
 echo "Opening $input_file, applying formatting, and saving as PDF..."
 soffice --norestore "$input_file" "macro:///Standard.Module1.ApplyFormattingAndSaveAsPDF" &
 
