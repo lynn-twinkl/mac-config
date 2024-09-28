@@ -24,6 +24,8 @@ This is a list of general packages I like to run on my terminal as well as their
 5. **Instaled dos2unix --** `brew install dos2unix` 
 <br>
 6. **Convert path line ending using real path, not homebrew symlink --** `dos2unix /opt/homebrew/lib/node_modules/flowise/bin/run`  
+<br>
+7. Launch using `npx flowise start`
 
 # Jupyter Lab
 
