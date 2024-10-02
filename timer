@@ -15,7 +15,7 @@ do
 	echo "2..."
 	sleep 1
 	echo "1..."
-	osascript -e 'display notification "Work Session Initiated" with title "B.A.S.H."'
+	osascript -e 'display notification "Work Session Initiated" with title "B.A.S.H."' 
 	afplay /System/Library/Sounds/Glass.aiff
 
 	sleep "${WORK_MIN}m"
@@ -28,7 +28,7 @@ do
 	sleep "${BREAK_MIN}m"
 	echo "Back to work now..."
 
-	osascript -e 'display notification "Break over now..." with title "Back to work"'
+	osascript -e 'display dialog "Back to work now..." with title "B.A.S.H." buttons {"Ready!"} default button "Ready!"'
 	afplay /System/Library/Sounds/Glass.aiff
 
 done
