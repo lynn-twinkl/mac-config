@@ -1,4 +1,4 @@
-#!/Users/lynn/myenv/bin/python
+#!/Users/lynn/venv/bin/python
 
 from tabulate import tabulate
 
