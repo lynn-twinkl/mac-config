@@ -6,6 +6,7 @@ This is  alist of pip3 packages ot install whenever a new venv is created, or yo
 
 ## Packages List
 
+0. jupyterlab
 1. pandas
 2. openai
 3. seaborn — for pretty diagrams and data visualization
@@ -14,4 +15,5 @@ This is  alist of pip3 packages ot install whenever a new venv is created, or yo
 6. unidecode
 7. tabulate
 8. joblib
-
+9. selenium
+10. webdriver-manager
