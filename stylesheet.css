@@ -1,6 +1,14 @@
 /* General body style with Avenir Next font */
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/Users/lynn/Library/Fonts/Outfit-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+ }
+
 body {
-  font-family: "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "Outfit", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 12px;
   line-height: 1.2;
   margin: 0;
@@ -11,7 +19,7 @@ body {
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "Outfit", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 600;
   margin: 1.5rem 0 1rem;
   line-height: 1.25;
