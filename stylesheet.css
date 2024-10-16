@@ -7,6 +7,13 @@
   font-style: normal;
  }
 
+@font-face {
+  font-family: 'SpaceMono';
+  src: url('/Users/lynn/Library/Fonts/SpaceMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+ }
+ 
 body {
   font-family: "Outfit", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 12px;
@@ -44,11 +51,11 @@ a:hover {
 
 /* Inline code */
 code {
-  background-color: #e0e0e0;
-  color: #ff00ff;
+  background-color: #efefef;
+  color: #fa3483;
   padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: "SF Mono", "Roboto Mono", "Courier New", monospace;
+  border-radius: 8px;
+  font-family: "SpaceMono", "Roboto Mono", "Courier New", monospace;
 }
 
 /* Preformatted code blocks */
