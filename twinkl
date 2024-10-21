@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+date=$(date +"%b %d, %Y")
+PINK='\033[38;5;207m'
+BLUE='\033[38;5;45m'
+NC='\033[0m'
+
+random_number=$(( ( RANDOM % 2 ) + 1 ))
+
+if [ $random_number -eq 1 ]; then
+    COLOR=$PINK
+elif [ $random_number -eq 2 ]; then
+    COLOR=$BLUE
+fi
+
+clear
+
+cd "/Users/lynn/Library/Mobile Documents/com~apple~CloudDocs/Work Files/Turmeric/Twinkl"
+
+echo -e "${COLOR}"
+echo -e "                          ████████ ██     ██ ██ ███    ██ ██   ██ ██"
+echo -e "                             ██    ██     ██ ██ ████   ██ ██  ██  ██"     
+echo -e "                             ██    ██  █  ██ ██ ██ ██  ██ █████   ██"      
+echo -e "                             ██    ██ ███ ██ ██ ██  ██ ██ ██  ██  ██"     
+echo -e "                             ██     ███ ███  ██ ██   ████ ██   ██ ███████" 
+echo -e ""                                                
+echo -e "------------------------------------------------------------------------------------------"
+echo -e "                                 HOME DIRECTORY – ${date}                            "
+echo -e "------------------------------------------------------------------------------------------"
+echo -e "${NC}"
+
+ls --color=never
+
+echo ""
