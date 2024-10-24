@@ -1,0 +1,59 @@
+#!/bin/zsh
+
+/Users/lynn/.mac-config/ascii-table
+
+read "start_period?Start Of Period: "
+read "end_period?End Of Period: "
+
+today=$(date +"%Y-%m-%d")
+filename="${today}-invoice.txt"
+
+#------- Template Design -------
+cat <<EOF > $filename
+                     ██ ███    ██ ██    ██  ██████  ██  ██████ ███████ 
+                     ██ ████   ██ ██    ██ ██    ██ ██ ██      ██      
+                     ██ ██ ██  ██ ██    ██ ██    ██ ██ ██      █████   
+                     ██ ██  ██ ██  ██  ██  ██    ██ ██ ██      ██      
+                     ██ ██   ████   ████    ██████  ██  ██████ ███████ 
+                                                               
+                                                             
+----------------------------------------------------------------------------------------
+                             INVOICE NO.: ${today}-invoice
+----------------------------------------------------------------------------------------
+
+From: Lynn Pérez                                                 Date: $(date +"%b %d, %Y")
+Email: perez.businessinfo@gmail.com
+                                                                 Coverage Period:
+To: Twinkl LTD.                                                  From: $start_period
+Email: NEEDS EMAIL                                               Until: $end_period
+
+
+#{PASTE ASCII HERE}
+
+
+
+
+  
+                                     _________
+                                    /________/|
+                                    |  ____  ||  (
+                                    | |    |*||   )
+                                    | |____|–||__|[|_,__
+                                   /[________]|  |[|( )/|
+                                  /___________________/ |
+                                  |  _________  _____ | |
+                                  | /         ||_____|| |
+                                  | |         ||_____|| |
+                                  | |         ||_____|| |
+                                  |_|         |_______|/
+
+
+
+                        ╔════════════════════════════════════════╗
+                        ║ A pleasure doing business with you!    ║
+                        ║                Thank you.              ║
+                        ╚════════════════════════════════════════╝
+EOF
+
+echo "Invoice generated as $filename"
+
