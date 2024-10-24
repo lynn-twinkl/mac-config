@@ -18,14 +18,14 @@ cat <<EOF > $filename
                                                                
                                                              
 ----------------------------------------------------------------------------------------
-                             INVOICE NO.: ${today}-invoice
+                                 INVOICE DATE: ${today}
 ----------------------------------------------------------------------------------------
 
-From: Lynn Pérez                                                 Date: $(date +"%b %d, %Y")
+From: Lynn Pérez                                                 Coverage Period
 Email: perez.businessinfo@gmail.com
-                                                                 Coverage Period:
-To: Twinkl LTD.                                                  From: $start_period
-Email: NEEDS EMAIL                                               Until: $end_period
+                                                                 From: $start_period
+To: Twinkl LTD.                                                  Until: $end_period      
+Email: NEEDS EMAI
 
 
 #{PASTE ASCII HERE}
