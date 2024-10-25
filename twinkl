@@ -1,16 +1,18 @@
 #!/bin/zsh
 
 date=$(date +"%b %d, %Y")
-PINK='\033[38;5;207m'
-BLUE='\033[38;5;45m'
+PINK='\033[38;5;162m'
+BLUE='\033[38;5;75m'
 NC='\033[0m'
 
-random_number=$(( ( RANDOM % 2 ) + 1 ))
+random_number=$(( ( RANDOM % 3 ) + 1 ))
 
 if [ $random_number -eq 1 ]; then
-    COLOR=$PINK
+   COLOR=$PINK
 elif [ $random_number -eq 2 ]; then
-    COLOR=$BLUE
+   COLOR=$BLUE
+else
+   COLOR=$BLUE
 fi
 
 clear
