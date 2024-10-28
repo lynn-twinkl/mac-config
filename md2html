@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+#---- ERROR HANDLING ----
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 input.md"
+  exit 1
+fi
+
+INPUT_FILE=$1
+BASENAME=$(basename "$INPUT_FILE" .md)
+
+if [ ! -f "$INPUT_FILE" ]; then
+  echo "Error: File $INPUT_FILE does not exist."
+  exit 1
+fi
+
+if [[ "$INPUT_FILE" != *.md ]]; then
+  echo "Error: Input file must be a Markdown (.md) file."
+  exit 1
+fi
+
+#---- SCRIPT ----
+
+CSS_FILE="$HOME/.mac-config/stylesheet.css"
+
+HTML_FILE="${BASENAME}.html"
+pandoc "$INPUT_FILE" -o "$HTML_FILE" --embed-resources --standalone --css="$CSS_FILE"
+
+echo "Done! Text converted to HTML. ${BASENAME}.pdf"
+
+# ---- COPYING TO CLIPBOARD ----
+
+read "response?Open ${HTML_FILE} to clipboard? (y/n): "
+
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  open  "$HTML_FILE"
+  sleep 3
+  rm  "$HTML_FILE"
+  echo "HTML was opened in Safari and removed from your directory."
+else
+  echo "Skipping. File saved to directory."
+fi
