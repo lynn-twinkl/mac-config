@@ -5,21 +5,11 @@ PINK='\033[38;5;162m'
 BLUE='\033[38;5;75m'
 NC='\033[0m'
 
-random_number=$(( ( RANDOM % 3 ) + 1 ))
-
-if [ $random_number -eq 1 ]; then
-   COLOR=$PINK
-elif [ $random_number -eq 2 ]; then
-   COLOR=$BLUE
-else
-   COLOR=$BLUE
-fi
-
 clear
 
 cd "/Users/lynn/Library/Mobile Documents/com~apple~CloudDocs/Work Files/Turmeric/Twinkl"
 
-echo -e "${COLOR}"
+echo -e "${BLUE}"
 echo -e "                         ████████ ██     ██ ██ ███    ██ ██   ██ ██"
 echo -e "                            ██    ██     ██ ██ ████   ██ ██  ██  ██"     
 echo -e "                            ██    ██  █  ██ ██ ██ ██  ██ █████   ██"      
