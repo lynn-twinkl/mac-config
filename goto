@@ -1,17 +1,13 @@
 #!/bin/zsh
 
-# Check if both arguments are provided
-if [[ -z "$1" || -z "$2" ]]; then
-    echo "Usage: $0 <filename> <link_number>"
+# Check if at least the filename is provided
+if [[ -z "$1" ]]; then
+    echo "Usage: $0 <filename> [link_number]"
     exit 1
 fi
 
-# Assign the arguments to variables
+# Assign the first argument to LINKS_FILE
 LINKS_FILE="$1"
-LINK_NUMBER="$2"
-
-# Debug: Print the file path to check
-echo "Checking file path: $LINKS_FILE"
 
 # Check if the file exists
 if [[ ! -f "$LINKS_FILE" ]]; then
@@ -19,9 +15,19 @@ if [[ ! -f "$LINKS_FILE" ]]; then
     exit 1
 fi
 
+# If only the filename is provided, display it with glow and prompt for a link number
+if [[ -z "$2" ]]; then
+    glow "$LINKS_FILE"  # Display the file content
+    echo -n "What URL would you like to visit? "
+    read LINK_NUMBER
+else
+    LINK_NUMBER="$2"
+fi
+
 # Extract the link based on the provided number, ignoring the first two lines
 LINK_LINE=$(sed -n "$((LINK_NUMBER + 2))p" "$LINKS_FILE" | sed -E 's/.*\((http[^)]+)\).*/\1/')
 
+# Check if a valid URL was extracted
 if [[ -n "$LINK_LINE" ]]; then
     # Open the URL in the default web browser
     open "$LINK_LINE"
