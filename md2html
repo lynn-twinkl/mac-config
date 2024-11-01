@@ -31,7 +31,7 @@ echo "Done! Text converted to HTML. ${BASENAME}.pdf"
 
 # ---- COPYING TO CLIPBOARD ----
 
-read "response?Open ${HTML_FILE} to clipboard? (y/n): "
+read "response?Open ${HTML_FILE} in Safari? (y/n): "
 
 if [[ "$response" =~ ^[Yy]$ ]]; then
   open  "$HTML_FILE"
