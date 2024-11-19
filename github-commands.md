@@ -23,3 +23,18 @@ For context, this is something I had to do a lot when I bought the new computer.
 5. Clean any local, untracked files:  `git clean -fd`
 6. Reset local directory to match the latest commit: `git reset --hard origin/main`
 7. `git pull origin main`
+
+## Creating A New Repo Using Alternate Accounts
+
+If you haven't yet authenticated the alternative account with gh, do so by entering:
+
+1. `gh auth login`
+2. Select HTTPS
+3. Authenticate using GitHub credentials
+
+Once done, if you can follow the next steps. Please note, these steps will create a repo from an alternate user, without making that the global github user on the command line.
+
+1. Navigate to the directory
+2. `git config user.name "alternate-username"`
+3. Verify new config with `git config user.name`
+4. The follow the normal steps for creating a repo.
