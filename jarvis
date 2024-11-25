@@ -6,6 +6,7 @@ tags=(
 	"meetings"
 	"operations"
 	"research"
+	"email"
 )
 
 for i in {1..$#tags}; do
