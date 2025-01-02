@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+cd /Users/lynn/Projects/Flowise/docker \
+	&& docker compose down

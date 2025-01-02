@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+cd /Users/lynn/Projects/Flowise/docker \
+	&& docker compose up -d \
+	&& for i in {5..1}; do
+       echo "Starting in $i..."
+       sleep 1
+     done \
+	&& open http://localhost:3000
+
