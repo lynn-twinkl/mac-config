@@ -5,7 +5,7 @@ cd /Users/lynn/Projects/Flowise/docker \
     && {
         echo "Starting..."
         steps=30  # Number of blocks in the loading bar
-        duration=5  # Total duration in seconds
+        duration=6  # Total duration in seconds
         sleep_time=$(echo "$duration / $steps" | bc -l)  # Calculate sleep time per step
 
         for i in $(seq 1 $steps); do
