@@ -1,20 +1,4 @@
 #!/bin/zsh
 
 cd /Users/lynn/Projects/Flowise/docker \
-    && docker compose up -d \
-    && {
-        echo "Starting..."
-        steps=30  # Number of blocks in the loading bar
-        duration=6  # Total duration in seconds
-        sleep_time=$(echo "$duration / $steps" | bc -l)  # Calculate sleep time per step
-
-        for i in $(seq 1 $steps); do
-            completed=$((i * 100 / steps))  # Percentage completed
-            blocks=$(printf "▉%.0s" $(seq 1 $i))  # Filled blocks
-            spaces=$(printf " %.0s" $(seq $i $steps))  # Remaining spaces
-            printf "\r[%s%s] %d%%" "$blocks" "$spaces" "$completed"  # Print progress bar
-            sleep $sleep_time
-        done
-        echo "\n\nDone!\n"
-    } \
-    && open http://localhost:3000
+    && pnpm start

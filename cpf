@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+file=$1
+
+pbcopy < "$file"

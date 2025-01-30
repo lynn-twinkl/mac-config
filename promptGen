@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+competitorNames=$1
+template=$2
+
+companies=()
+while IFS= read -r line; do
+	companies+=("$line")
+done < $competitorNames
+
+for company in "${companies[@]}"; do
+	output="${company// /_}_report.txt"
+	sed "s/competitorName/$company/g" "$template" > "$output"
+	echo "Done: $output"
+done
