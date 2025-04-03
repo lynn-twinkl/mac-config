@@ -1,0 +1,33 @@
+#!/bin/zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Convert the first positional parameter to an absolute path if provided.
+if [ -n "$1" ]; then
+  query_file=$(realpath "$1")
+fi
+
+cd ~/deep-research
+
+nvm use
+
+# Build command-line arguments.
+args=()
+
+# If a query file was provided, pass it as --query-file.
+if [ -n "$query_file" ]; then
+  args+=(--query-file "$query_file")
+fi
+
+# Map the second parameter to --outdir.
+if [ -n "$2" ]; then
+  args+=(--outdir "$2")
+fi
+
+# Map the third parameter to --filename.
+if [ -n "$3" ]; then
+  args+=(--filename "$3")
+fi
+
+npm start -- "${args[@]}"
