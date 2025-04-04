@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+source openwebui_venv/bin/activate &&
+open-webui serve
