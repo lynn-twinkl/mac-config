@@ -18,7 +18,7 @@ gh repo create "$name" --$visibility --source=. --remote=origin && \
 echo "Successfully created repo '$name' as $visibility."
 
 if [[ -f ~/.mac-config/gitignore-example ]]; then
-  cp ~/.mac-config/gitignore-example . && echo ".gitignore file copied."
+  cp ~/.mac-config/gitignore-example ./.gitignore && echo ".gitignore file copied."
 else
   echo "Warning: ~/.mac-config/gitignore-example not found."
 fi
