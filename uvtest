@@ -1,13 +1,11 @@
 #!/usr/bin/env zsh
 
 # -----------------------------------------------------------------------------
-# run_py_test.sh
-#
-# A Zsh script to find the project root, convert a Python script path to a
+# A script to find the project root, convert a Python script path to a
 # module path, and run it using 'uv run'.
 #
 # Usage:
-#   ./run_py_test.sh path/to/your/test_script.py
+#   ./uvtest path/to/your/test_script.py
 #
 # Example:
 #   Given a project structure:
@@ -24,15 +22,12 @@
 #   uv run python -m tests.test_api
 # -----------------------------------------------------------------------------
 
-# --- Configuration ---
-# The marker file or directory that identifies the project root.
-# Common choices are '.git', 'pyproject.toml', '.project_root'
-PROJECT_ROOT_MARKER=".git"
+# --- CONFIGURATION ---
+PROJECT_ROOT_MARKER="pyproject.toml"
 
-# --- Functions ---
+# --- FUNCTIONS ---
 
 # Function to print an error message and exit.
-# Usage: error_exit "Your error message here"
 error_exit() {
   echo "❌ Error: $1" >&2
   exit 1
@@ -53,14 +48,12 @@ find_project_root() {
   return 1
 }
 
-# --- Script Main Logic ---
+# --- SCRIPT MAIN LOGIC ---
 
-# 1. Check for script argument
 if [[ $# -eq 0 ]]; then
   error_exit "No test script specified.\nUsage: $0 path/to/your/test_script.py"
 fi
 
-# The Python script file provided as the first argument.
 SCRIPT_FILE="$1"
 
 # 2. Validate the script file path
@@ -71,11 +64,10 @@ fi
 ABSOLUTE_SCRIPT_PATH="${SCRIPT_FILE:a}"
 
 # 3. Identify the project root
-echo "🔍 Searching for project root (marker: '$PROJECT_ROOT_MARKER')..."
 if ! find_project_root; then
   error_exit "Could not find project root. Traversed up to '/'."
 fi
-echo "✅ Project root found: $PROJECT_ROOT"
+echo "🔎 Project root found: $PROJECT_ROOT (marker: '$PROJECT_ROOT_MARKER')"
 
 # 4. Compose the Python module path
 # First, get the script's path relative to the project root.
@@ -93,16 +85,15 @@ MODULE_PATH=${RELATIVE_SCRIPT_PATH%".py"}
 # Replace all slashes '/' with dots '.'
 MODULE_PATH=${MODULE_PATH//\//.}
 
-echo "🐍 Converted to module path: $MODULE_PATH"
+echo "⚡️ Using module path: $MODULE_PATH"
 
 # 5. Change to the project root and run the command
-echo "🚀 Changing directory to project root and executing command..."
 cd "$PROJECT_ROOT" || error_exit "Could not change directory to '$PROJECT_ROOT'."
 
 # Construct the final command
 FULL_COMMAND="uv run python -m $MODULE_PATH"
 
-echo "   Executing: $FULL_COMMAND"
+echo "🧪 Executing: $FULL_COMMAND"
 echo "--------------------------------------------------"
 
 # Execute the command. The output will be displayed in the current terminal.
