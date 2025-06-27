@@ -2,24 +2,13 @@
 
 # -----------------------------------------------------------------------------
 # A script to find the project root, convert a Python script path to a
-# module path, and run it using 'uv run'.
+# module path, and run it using 'uv run', passing along any extra arguments.
 #
 # Usage:
-#   ./uvtest path/to/your/test_script.py
+#   ./uvtest path/to/your/test_script.py [args_for_script...]
 #
 # Example:
-#   Given a project structure:
-#   /path/to/project/
-#   ├── .git/
-#   ├── pyproject.toml
-#   └── tests/
-#       └── test_api.py
-#
-#   Running from anywhere inside the project:
-#   ./run_py_test.sh tests/test_api.py
-#
-#   Will execute the following command from `/path/to/project/`:
-#   uv run python -m tests.test_api
+#   ./uvtest tests/test_api.py --some-flag "some value"
 # -----------------------------------------------------------------------------
 
 # --- CONFIGURATION ---
@@ -38,7 +27,8 @@ error_exit() {
 find_project_root() {
   local current_dir
   current_dir=$(pwd)
-  while [[ "$current_dir" != "/" ]]; do
+  while [[ "$current_dir" != "/" ]]
+  do
     if [[ -e "$current_dir/$PROJECT_ROOT_MARKER" ]]; then
       PROJECT_ROOT="$current_dir"
       return 0
@@ -50,11 +40,14 @@ find_project_root() {
 
 # --- SCRIPT MAIN LOGIC ---
 
+# 1. Validate that at least the script file is provided
 if [[ $# -eq 0 ]]; then
-  error_exit "No test script specified.\nUsage: $0 path/to/your/test_script.py"
+  # Updated usage message to show that extra arguments are accepted
+  error_exit "No test script specified.\nUsage: $0 path/to/your/test_script.py [args_for_script...]"
 fi
 
 SCRIPT_FILE="$1"
+shift # Remove the script file from the argument list.
 
 # 2. Validate the script file path
 # Use :a to get the absolute path, which helps in later transformations.
@@ -67,6 +60,7 @@ ABSOLUTE_SCRIPT_PATH="${SCRIPT_FILE:a}"
 if ! find_project_root; then
   error_exit "Could not find project root. Traversed up to '/'."
 fi
+echo ""
 echo "🔎 Project root found: $PROJECT_ROOT (marker: '$PROJECT_ROOT_MARKER')"
 
 # 4. Compose the Python module path
@@ -90,14 +84,14 @@ echo "⚡️ Using module path: $MODULE_PATH"
 # 5. Change to the project root and run the command
 cd "$PROJECT_ROOT" || error_exit "Could not change directory to '$PROJECT_ROOT'."
 
-# Construct the final command
-FULL_COMMAND="uv run python -m $MODULE_PATH"
-
-echo "🧪 Executing: $FULL_COMMAND"
+# Construct the final command, including any additional arguments.
+# "$@" will now expand to all arguments that came *after* the script name.
+echo "🧪 Executing: uv run python -m \"$MODULE_PATH\" \"$@\""
 echo "--------------------------------------------------"
 
-# Execute the command. The output will be displayed in the current terminal.
-eval $FULL_COMMAND
-
+# Execute the command directly, with "$@" quoted to preserve arguments with spaces.
+uv run python -m "$MODULE_PATH" "$@"
+echo ""
 echo "--------------------------------------------------"
 echo "✅ Script execution finished."
+echo ""
