@@ -7,7 +7,7 @@ NC='\033[0m'
 
 clear
 
-cd "/Users/lynn/Library/Mobile Documents/com~apple~CloudDocs/Work Files/Turmeric/Twinkl"
+cd "/Users/lynn/Documents/Twinkl"
 
 echo -e "${BLUE}"
 echo -e "                             ████████ ██     ██ ██ ███    ██ ██   ██ ██"
