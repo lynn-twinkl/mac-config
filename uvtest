@@ -12,6 +12,7 @@
 # -----------------------------------------------------------------------------
 
 # --- CONFIGURATION ---
+START_TIME=$SECONDS
 PROJECT_ROOT_MARKER="pyproject.toml"
 
 # --- FUNCTIONS ---
@@ -91,7 +92,10 @@ echo "--------------------------------------------------"
 
 # Execute the command directly, with "$@" quoted to preserve arguments with spaces.
 uv run python -m "$MODULE_PATH" "$@"
+
+ELAPSED_TIME=$(( SECONDS - START_TIME ))
+
 echo ""
 echo "--------------------------------------------------"
-echo "✅ Script execution finished."
+echo "✅ Execution finished in ${ELAPSED_TIME}."
 echo ""
