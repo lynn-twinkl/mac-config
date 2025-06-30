@@ -97,5 +97,5 @@ ELAPSED_TIME=$(( SECONDS - START_TIME ))
 
 echo ""
 echo "--------------------------------------------------"
-echo "✅ Execution finished in ${ELAPSED_TIME}."
+echo "✅ Execution finished in ~ ${ELAPSED_TIME} seconds"
 echo ""
