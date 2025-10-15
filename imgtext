@@ -1,0 +1,46 @@
+#!/bin/zsh
+
+# Usage: ./magick_caption.zsh input_image output_image fontsize "Caption Text"
+
+# Check for magick command
+if ! command -v magick &>/dev/null; then
+  echo "Error: ImageMagick (magick) is not installed or not in your PATH."
+  exit 1
+fi
+
+# Check argument count
+if [[ $# -lt 3 ]]; then
+  echo "Usage: $0 input_image output_image fontsize \"Caption Text (optional)\""
+  exit 1
+fi
+
+INPUT="$1"
+OUTPUT="$2"
+FONTSIZE="$3"
+CAPTION="${4:-This is a test}"  # Default caption if not provided
+
+# Check input file exists
+if [[ ! -f "$INPUT" ]]; then
+  echo "Error: Input file '$INPUT' not found."
+  exit 1
+fi
+
+# Check fontsize is a positive integer
+if ! [[ "$FONTSIZE" =~ '^[0-9]+$' ]] || [[ "$FONTSIZE" -le 0 ]]; then
+  echo "Error: Fontsize must be a positive integer."
+  exit 1
+fi
+
+# Run the command
+magick "$INPUT" -colorspace RGB \
+  \( -background none -fill white -font Outfit-Bold -pointsize $FONTSIZE \
+     -size 6000x -gravity center caption:"$CAPTION" -resize 25% \) \
+  -gravity center -composite -colorspace sRGB "$OUTPUT"
+
+# Check if output was created
+if [[ $? -eq 0 && -f "$OUTPUT" ]]; then
+  echo "Success: Output saved to '$OUTPUT'"
+else
+  echo "Error: ImageMagick command failed."
+  exit 1
+fi

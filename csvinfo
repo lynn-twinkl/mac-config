@@ -7,6 +7,8 @@ file_path = sys.argv[1]
 
 df = pl.read_csv(file_path)
 
-print("Length:", format(len(df),'_'))
 print()
-print(df.columns)
+print("CSV Length:", format(len(df),'_'))
+print()
+print(f'Columns: {df.columns}')
+print()
